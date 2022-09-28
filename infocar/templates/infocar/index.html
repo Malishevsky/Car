@@ -1,0 +1,21 @@
+{%extends 'layout/basic.html'%}
+{%block content%}
+
+{%for a in all_car%}
+<h1>{{a.firm}} {{a.model}} </h1>
+<h3>Двигатель : {{a.engine}} {{a.volume}}л.</h3>
+<h3>Коробка : {{a.transmission}}</h3>
+<h3>Цвет : {{a.color}}</h3>
+<h2>Цена : {{a.price}} USD </h2><br>
+<form action="{%url 'edit' a.id %}"  method="POST">
+                {% csrf_token%}
+                <button>Редактировать</button>
+        </form><br>
+        <form action="{%url 'delete' a.id %}"  method="POST">
+                {% csrf_token%}
+                <button>Удалить</button>
+        </form><br>
+
+</ul>
+{% endfor%}
+{%endblock%}
